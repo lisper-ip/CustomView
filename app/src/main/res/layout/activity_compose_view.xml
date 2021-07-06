@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_clear_edt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_8"
+                android:text="@string/edit_clear"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <app.lonzh.customview.compose.EditClearView
+                android:id="@+id/edit_clear_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@drawable/shape_edt_bg"
+                app:edt_clear_hint="@string/input_account"
+                app:edt_clear_hint_color="@color/black10"
+                app:edt_clear_text_color="@color/black"
+                app:img_clear_icon="@drawable/ic_login_clear"
+                app:layout_constraintTop_toBottomOf="@id/tv_clear_edt" />
+
+            <TextView
+                app:layout_constraintLeft_toLeftOf="@id/tv_clear_edt"
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/edt_password"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/edit_clear_view" />
+
+            <app.lonzh.customview.compose.EditPasswordView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/dp_10"
+                android:background="@drawable/shape_edt_bg"
+                app:edt_password_hint="@string/input_password"
+                app:edt_password_hint_color="@color/black10"
+                app:edt_password_text_color="@color/black"
+                app:img_password_icon="@drawable/selector_login_eye"
+                app:layout_constraintTop_toBottomOf="@id/tv_password" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</layout>

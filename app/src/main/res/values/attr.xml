@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="EditClearView">
+        <attr name="edt_clear_hint" format="string"/>
+        <attr name="edt_clear_hint_color" format="color"/>
+        <attr name="edt_clear_text_size" format="dimension"/>
+        <attr name="edt_clear_text_color" format="color"/>
+        <attr name="edt_clear_height" format="dimension"/>
+        <attr name="edt_clear_padding_start" format="dimension"/>
+        <attr name="edt_clear_padding_end" format="dimension"/>
+        <attr name="img_clear_icon" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="EditPasswordView">
+        <attr name="edt_password_hint" format="string"/>
+        <attr name="edt_password_hint_color" format="color"/>
+        <attr name="edt_password_text_size" format="dimension"/>
+        <attr name="edt_password_text_color" format="color"/>
+        <attr name="edt_password_height" format="dimension"/>
+        <attr name="edt_password_padding_start" format="dimension"/>
+        <attr name="edt_password_padding_end" format="dimension"/>
+        <attr name="img_password_icon" format="reference"/>
+    </declare-styleable>
+</resources>
