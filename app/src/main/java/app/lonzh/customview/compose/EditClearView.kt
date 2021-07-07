@@ -17,7 +17,7 @@ import com.blankj.utilcode.util.StringUtils
 /**
  *
  * @ProjectName:    CustomView
- * @Description:    带有清除按键的输入框
+ * @Description:    带有清除按键的输入框(用addView形式性能更好)
  * @Author:         Lisper
  * @CreateDate:     2021/7/6 2:51 下午
  * @UpdateUser:     Lisper：
