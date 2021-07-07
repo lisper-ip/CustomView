@@ -9,6 +9,8 @@
         <attr name="edt_clear_padding_start" format="dimension"/>
         <attr name="edt_clear_padding_end" format="dimension"/>
         <attr name="img_clear_icon" format="reference"/>
+        <attr name="img_clear_width" format="dimension"/>
+        <attr name="img_clear_height" format="dimension"/>
     </declare-styleable>
 
     <declare-styleable name="EditPasswordView">
@@ -20,5 +22,7 @@
         <attr name="edt_password_padding_start" format="dimension"/>
         <attr name="edt_password_padding_end" format="dimension"/>
         <attr name="img_password_icon" format="reference"/>
+        <attr name="img_password_width" format="dimension"/>
+        <attr name="img_password_height" format="dimension"/>
     </declare-styleable>
 </resources>

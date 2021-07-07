@@ -2,22 +2,23 @@ package app.lonzh.customview.compose
 
 import android.content.Context
 import android.text.Editable
+import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.LayoutInflater
+import android.view.Gravity
 import android.view.View
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.DataBindingUtil
+import android.widget.ImageView
+import android.widget.LinearLayout
 import app.lonzh.customview.R
-import app.lonzh.customview.databinding.LayoutEditClearBinding
 import com.blankj.utilcode.util.ClickUtils
 import com.blankj.utilcode.util.StringUtils
+import com.google.android.material.textfield.TextInputEditText
 
 /**
  *
  * @ProjectName:    CustomView
- * @Description:    带有清除按键的输入框(用addView形式性能更好)
+ * @Description:    带有清除按键的输入框(addView形式)
  * @Author:         Lisper
  * @CreateDate:     2021/7/6 2:51 下午
  * @UpdateUser:     Lisper：
@@ -25,9 +26,9 @@ import com.blankj.utilcode.util.StringUtils
  * @UpdateRemark:   更新说明：
  * @Version:        1.0
  */
-class EditClearView : ConstraintLayout {
-
-    private lateinit var binding: LayoutEditClearBinding
+class EditClearView : LinearLayout {
+    private lateinit var textInputEditText: TextInputEditText
+    private var iv: ImageView? = null
 
     constructor(context: Context) : super(context){
         initialize(context, null, 0)
@@ -47,23 +48,41 @@ class EditClearView : ConstraintLayout {
         initialize(context, attributeSet, defStyleInt)
     }
 
-    private fun initialize(context: Context, attributeSet: AttributeSet?, defStyleInt: Int){
-        val view = LayoutInflater.from(context).inflate(R.layout.layout_edit_clear, this)
-        view.tag = "layout/layout_edit_clear_0"
-        binding = DataBindingUtil.bind(view)!!
+    private fun initialize(context: Context, attrs: AttributeSet?, defStyleInt: Int){
+        orientation = HORIZONTAL
+        gravity = Gravity.CENTER_VERTICAL
 
-        attributeSet?.let {
-            val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.EditClearView)
-            binding.iv.run {
-                setImageResource(typedArray.getResourceId(R.styleable.EditClearView_img_clear_icon, 0))
-                visibility = GONE
+        textInputEditText = getEditText()
+        addView(textInputEditText, 0)
+
+        attrs?.let {
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.EditClearView)
+            if(typedArray.hasValue(R.styleable.EditClearView_img_clear_icon)){
+                iv = ImageView(context).apply {
+                    val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+                    params.width = typedArray.getDimension(R.styleable.EditClearView_img_clear_width,
+                        resources.getDimension(R.dimen.dp_30)).toInt()
+                    params.width = typedArray.getDimension(R.styleable.EditClearView_img_clear_height,
+                        resources.getDimension(R.dimen.dp_30)).toInt()
+                    layoutParams = params
+                    setImageResource(typedArray.getResourceId(R.styleable.EditClearView_img_clear_icon, 0))
+                    visibility = GONE
+                }
+                ClickUtils.applySingleDebouncing(iv){
+                    textInputEditText.setText("")
+                }
+                addView(iv, 1)
             }
-            binding.edt.run {
+            textInputEditText.run {
+                gravity = Gravity.CENTER_VERTICAL
+                background = null
+                setSingleLine()
+                ellipsize = TextUtils.TruncateAt.END
                 setPadding(typedArray.getDimension(R.styleable.EditClearView_edt_clear_padding_start, resources.getDimension(R.dimen.dp_10)).toInt(), 0,
                     typedArray.getDimension(R.styleable.EditClearView_edt_clear_padding_end, resources.getDimension(R.dimen.dp_0)).toInt(), 0)
-
                 setTextColor(typedArray.getColor(R.styleable.EditClearView_edt_clear_text_color, 0))
-                setTextSize(TypedValue.COMPLEX_UNIT_PX,
+                setTextSize(
+                    TypedValue.COMPLEX_UNIT_PX,
                     typedArray.getDimension(R.styleable.EditClearView_edt_clear_text_size,
                         resources.getDimension(R.dimen.text_14sp)))
                 hint = typedArray.getString(R.styleable.EditClearView_edt_clear_hint)
@@ -73,11 +92,7 @@ class EditClearView : ConstraintLayout {
             typedArray.recycle()
         }
 
-        ClickUtils.applySingleDebouncing(binding.iv){
-            binding.edt.setText("")
-        }
-
-        binding.edt.addTextChangedListener(object : TextWatcher{
+        textInputEditText.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
             }
@@ -86,16 +101,26 @@ class EditClearView : ConstraintLayout {
             }
 
             override fun afterTextChanged(p0: Editable?) {
-                if(StringUtils.isEmpty(binding.edt.text)){
-                    binding.iv.visibility = View.GONE
-                } else {
-                    binding.iv.visibility = View.VISIBLE
+                iv?.let {
+                    if(StringUtils.isEmpty(textInputEditText.text)){
+                        it.visibility = View.GONE
+                    } else {
+                        it.visibility = View.VISIBLE
+                    }
                 }
             }
         })
     }
 
+    private fun getEditText(): TextInputEditText{
+        val textInputEditText = TextInputEditText(context)
+        val layoutParams = LayoutParams(1, LayoutParams.WRAP_CONTENT)
+        layoutParams.weight = 1f
+        textInputEditText.layoutParams = layoutParams
+        return textInputEditText
+    }
+
     fun getText() : String{
-        return binding.edt.text.toString()
+        return textInputEditText.text.toString()
     }
 }

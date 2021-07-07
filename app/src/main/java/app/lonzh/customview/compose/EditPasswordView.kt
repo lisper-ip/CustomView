@@ -1,17 +1,19 @@
 package app.lonzh.customview.compose
 
 import android.content.Context
+import android.text.InputType
 import android.text.Selection
+import android.text.TextUtils
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.util.TypedValue
-import android.view.LayoutInflater
-import androidx.constraintlayout.widget.ConstraintLayout
-import androidx.databinding.DataBindingUtil
+import android.view.Gravity
+import android.widget.ImageView
+import android.widget.LinearLayout
 import app.lonzh.customview.R
-import app.lonzh.customview.databinding.LayoutEditPasswordBinding
 import com.blankj.utilcode.util.ClickUtils
+import com.google.android.material.textfield.TextInputEditText
 
 /**
  *
@@ -24,9 +26,9 @@ import com.blankj.utilcode.util.ClickUtils
  * @UpdateRemark:   更新说明：
  * @Version:        1.0
  */
-class EditPasswordView : ConstraintLayout {
-
-    private lateinit var binding: LayoutEditPasswordBinding
+class EditPasswordView : LinearLayout {
+    private lateinit var textInputEditText: TextInputEditText
+    private var iv: ImageView? = null
 
     constructor(context: Context) : super(context){
         initialize(context, null, 0)
@@ -47,19 +49,36 @@ class EditPasswordView : ConstraintLayout {
     }
 
     private fun initialize(context: Context, attributeSet: AttributeSet?, defStyleInt: Int){
-        val view = LayoutInflater.from(context).inflate(R.layout.layout_edit_password, this)
-        view.tag = "layout/layout_edit_password_0"
-        binding = DataBindingUtil.bind(view)!!
+        orientation = HORIZONTAL
+        gravity = Gravity.CENTER_VERTICAL
+
+        textInputEditText = getEditText()
+        addView(textInputEditText, 0)
+
 
         attributeSet?.let {
             val typedArray = context.obtainStyledAttributes(attributeSet, R.styleable.EditPasswordView)
-            binding.iv.run {
+            iv = ImageView(context).apply {
+                val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
+                params.width = typedArray.getDimension(R.styleable.EditPasswordView_img_password_width,
+                    resources.getDimension(R.dimen.dp_30)).toInt()
+                params.width = typedArray.getDimension(R.styleable.EditPasswordView_img_password_height,
+                    resources.getDimension(R.dimen.dp_30)).toInt()
+                layoutParams = params
                 setImageResource(typedArray.getResourceId(R.styleable.EditPasswordView_img_password_icon, 0))
             }
-            binding.edt.run {
+            addView(iv, 1)
+
+            textInputEditText.run {
+                gravity = Gravity.CENTER_VERTICAL
+                background = null
+                setSingleLine()
+                inputType = InputType.TYPE_TEXT_VARIATION_PASSWORD
+                ellipsize = TextUtils.TruncateAt.END
+                transformationMethod =
+                    PasswordTransformationMethod.getInstance()
                 setPadding(typedArray.getDimension(R.styleable.EditPasswordView_edt_password_padding_start, resources.getDimension(R.dimen.dp_10)).toInt(), 0,
                     typedArray.getDimension(R.styleable.EditPasswordView_edt_password_padding_end, resources.getDimension(R.dimen.dp_0)).toInt(), 0)
-
                 setTextColor(typedArray.getColor(R.styleable.EditPasswordView_edt_password_text_color, 0))
                 setTextSize(TypedValue.COMPLEX_UNIT_PX,
                     typedArray.getDimension(R.styleable.EditPasswordView_edt_password_text_size,
@@ -71,23 +90,31 @@ class EditPasswordView : ConstraintLayout {
             typedArray.recycle()
         }
 
-        ClickUtils.applySingleDebouncing(binding.iv){
-            val method = binding.edt.transformationMethod
+        ClickUtils.applySingleDebouncing(iv){
+            val method = textInputEditText.transformationMethod
             if (method == HideReturnsTransformationMethod.getInstance()) {
-                binding.edt.transformationMethod =
+                textInputEditText.transformationMethod =
                     PasswordTransformationMethod.getInstance()
             } else {
-                binding.edt.transformationMethod =
+                textInputEditText.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
             }
             it.isSelected = !it.isSelected
-            binding.edt.text?.length?.let { length ->
-                Selection.setSelection(binding.edt.text, length)
+            textInputEditText.text?.length?.let { length ->
+                Selection.setSelection(textInputEditText.text, length)
             }
         }
     }
 
+    private fun getEditText(): TextInputEditText {
+        val textInputEditText = TextInputEditText(context)
+        val layoutParams = LayoutParams(1, LayoutParams.WRAP_CONTENT)
+        layoutParams.weight = 1f
+        textInputEditText.layoutParams = layoutParams
+        return textInputEditText
+    }
+
     fun getText() : String{
-        return binding.edt.text.toString()
+        return textInputEditText.text.toString()
     }
 }
