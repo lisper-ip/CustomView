@@ -30,7 +30,7 @@ class EditPasswordView : LinearLayout {
     private lateinit var textInputEditText: TextInputEditText
     private var iv: ImageView? = null
 
-    constructor(context: Context) : super(context){
+    constructor(context: Context) : super(context, null){
         initialize(context, null, 0)
     }
 

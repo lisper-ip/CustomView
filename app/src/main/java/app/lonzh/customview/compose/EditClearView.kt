@@ -30,7 +30,7 @@ class EditClearView : LinearLayout {
     private lateinit var textInputEditText: TextInputEditText
     private var iv: ImageView? = null
 
-    constructor(context: Context) : super(context){
+    constructor(context: Context) : super(context, null){
         initialize(context, null, 0)
     }
 
@@ -88,28 +88,28 @@ class EditClearView : LinearLayout {
                 hint = typedArray.getString(R.styleable.EditClearView_edt_clear_hint)
                 setHintTextColor(typedArray.getColor(R.styleable.EditClearView_edt_clear_hint_color, 0))
                 layoutParams.height = typedArray.getDimension(R.styleable.EditClearView_edt_clear_height,  resources.getDimension(R.dimen.dp_40)).toInt()
+
+                addTextChangedListener(object : TextWatcher{
+                    override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                    }
+
+                    override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                    }
+
+                    override fun afterTextChanged(p0: Editable?) {
+                        iv?.let {
+                            if(StringUtils.isEmpty(textInputEditText.text)){
+                                it.visibility = View.GONE
+                            } else {
+                                it.visibility = View.VISIBLE
+                            }
+                        }
+                    }
+                })
             }
             typedArray.recycle()
         }
-
-        textInputEditText.addTextChangedListener(object : TextWatcher{
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-                iv?.let {
-                    if(StringUtils.isEmpty(textInputEditText.text)){
-                        it.visibility = View.GONE
-                    } else {
-                        it.visibility = View.VISIBLE
-                    }
-                }
-            }
-        })
     }
 
     private fun getEditText(): TextInputEditText{

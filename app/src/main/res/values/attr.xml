@@ -25,4 +25,20 @@
         <attr name="img_password_width" format="dimension"/>
         <attr name="img_password_height" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="ClockView">
+        <attr name="clock_margin" format="dimension"/>
+        <attr name="clock_color" format="color"/>
+        <attr name="clock_num_size" format="dimension"/>
+        <attr name="clock_in_circle_radius" format="dimension"/>
+        <attr name="clock_out_circle_radius" format="dimension"/>
+        <attr name="clock_date_text_size" format="dimension"/>
+        <attr name="clock_date_text_color" format="color"/>
+        <!--时针的颜色-->
+        <attr name="clock_hour_color" format="color"/>
+        <!--分针的颜色-->
+        <attr name="clock_minute_color" format="color"/>
+        <!--秒针的颜色-->
+        <attr name="clock_second_color" format="color"/>
+    </declare-styleable>
 </resources>

@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">CustomView</string>
     <string name="input_account">请输入用户名</string>
-    <string name="edit_clear">带删除的编辑框</string>
-    <string name="edt_password">密码切换编辑框</string>
+    <string name="edit_clear">带删除的编辑框(组合)</string>
+    <string name="edt_password">密码切换编辑框(组合)</string>
     <string name="input_password">请输入密码</string>
+    <string name="clock_view">钟表(自定义view)</string>
 </resources>

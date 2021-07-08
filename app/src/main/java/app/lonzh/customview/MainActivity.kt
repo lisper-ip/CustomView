@@ -29,8 +29,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private fun getModels() : MutableList<ViewBean>{
         return mutableListOf<ViewBean>().apply {
-            add(ViewBean(0, "组合自定义View"))
-            add(ViewBean(1, "未完待续"))
+            add(ViewBean(0, "自定义View练习"))
+            add(ViewBean(2, "未完待续"))
         }
     }
 }

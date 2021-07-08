@@ -55,6 +55,7 @@
                 app:layout_constraintTop_toBottomOf="@id/edit_clear_view" />
 
             <app.lonzh.customview.compose.EditPasswordView
+                android:id="@+id/edt_password_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/dp_10"
@@ -66,6 +67,29 @@
                 app:img_password_height="@dimen/dp_40"
                 app:img_password_icon="@drawable/selector_login_eye"
                 app:layout_constraintTop_toBottomOf="@id/tv_password" />
+
+            <TextView
+                app:layout_constraintLeft_toLeftOf="@id/tv_clear_edt"
+                android:id="@+id/tv_clock"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clock_view"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                app:layout_constraintTop_toBottomOf="@id/edt_password_view" />
+
+            <app.lonzh.customview.compose.ClockView
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginTop="@dimen/dp_10"
+                app:layout_constraintTop_toBottomOf="@id/tv_clock"
+                app:clock_num_size="@dimen/text_15sp"
+                app:clock_date_text_size="@dimen/text_12sp"
+                app:clock_color="@color/black75"
+                app:clock_second_color="@android:color/holo_red_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
