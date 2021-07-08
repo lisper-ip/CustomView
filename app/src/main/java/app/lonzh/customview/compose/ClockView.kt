@@ -2,7 +2,6 @@ package app.lonzh.customview.compose
 
 import android.content.Context
 import android.graphics.*
-import android.text.format.DateUtils
 import android.util.AttributeSet
 import android.util.Log
 import android.view.View
@@ -10,13 +9,12 @@ import androidx.core.content.ContextCompat
 import app.lonzh.customview.R
 import com.blankj.utilcode.util.ScreenUtils
 import com.blankj.utilcode.util.TimeUtils
-import java.text.DateFormat
 import java.util.*
 
 /**
  *
- * @ProjectName:    CustomView
- * @Description:    描述
+ * @ProjectName:    ClockView
+ * @Description:    钟表自定义（主要复习基础）
  * @Author:         Lisper
  * @CreateDate:     2021/7/7 3:53 下午
  * @UpdateUser:     Lisper：
