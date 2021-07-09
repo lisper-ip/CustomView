@@ -17,7 +17,7 @@ import com.google.android.material.textfield.TextInputEditText
 
 /**
  *
- * @ProjectName:    EditPasswordView
+ * @ProjectName:    CustomView
  * @Description:    带有显示隐藏密码的编辑框(用addView形式性能更好)
  * @Author:         Lisper
  * @CreateDate:     2021/7/6 2:51 下午

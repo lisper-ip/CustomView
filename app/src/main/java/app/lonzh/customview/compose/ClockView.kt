@@ -13,7 +13,7 @@ import java.util.*
 
 /**
  *
- * @ProjectName:    ClockView
+ * @ProjectName:    CustomView
  * @Description:    钟表自定义（主要复习基础）
  * @Author:         Lisper
  * @CreateDate:     2021/7/7 3:53 下午
@@ -104,6 +104,9 @@ class ClockView : View {
     private var secondLength: Float = 0f
     private var secondMargin: Float = 0f
 
+    //箭头的长度
+    private var arrowLength: Float = 0f
+
     constructor(context: Context) : super(context, null) {
         init(context, null, 0)
     }
@@ -183,13 +186,15 @@ class ClockView : View {
         textMargin = resources.getDimension(R.dimen.dp_4)
 
         hourLength = resources.getDimension(R.dimen.dp_4)
-        hourMargin = resources.getDimension(R.dimen.dp_30)
+        hourMargin = resources.getDimension(R.dimen.dp_40)
 
         minuteLength = resources.getDimension(R.dimen.dp_3)
         minuteMargin = resources.getDimension(R.dimen.dp_20)
 
         secondLength = resources.getDimension(R.dimen.dp_2)
         secondMargin = resources.getDimension(R.dimen.dp_1)
+
+        arrowLength = resources.getDimension(R.dimen.dp_10)
 
         initPaint(context)
     }
@@ -277,7 +282,7 @@ class ClockView : View {
         } else {
             screenHeight / 4
         }
-        setMeasuredDimension(width, height)
+        setMeasuredDimension(width.coerceAtMost(height), width.coerceAtMost(height))
     }
 
     override fun onDraw(canvas: Canvas) {
@@ -310,7 +315,7 @@ class ClockView : View {
     private fun drawDate(canvas: Canvas) {
         canvas.save()
         canvas.translate(0f, radius / 3)
-        val date = TimeUtils.date2String(Date(), "yy/MM/dd")
+        val date = TimeUtils.date2String(Date(), "yyyy/MM/dd")
         val dateRect = Rect()
         textPaint.getTextBounds(date, 0, date.length, dateRect)
         canvas.drawText(date, 0f, ((dateRect.bottom - dateRect.top) / 2).toFloat(), datePaint)
@@ -347,7 +352,7 @@ class ClockView : View {
                 textPaint.getTextBounds(number.toString(), 0, number.toString().length, rect)
                 canvas.translate(
                     0f,
-                    -radius + longScaleLength + textMargin + (rect.bottom - rect.top) / 2
+                    -radius + longScaleLength + textMargin * 3
                 )
                 canvas.rotate((-6 * index).toFloat())
                 canvas.drawText(
@@ -368,7 +373,6 @@ class ClockView : View {
         val hour = TimeUtils.getValueByCalendarField(Calendar.HOUR)
         val minute = TimeUtils.getValueByCalendarField(Calendar.MINUTE)
         val second = TimeUtils.getValueByCalendarField(Calendar.SECOND)
-        Log.e("shit", "$second")
 
         var hourRate = 360 * hour * 1.0f / 12
         val minuteRate = 360 * minute * 1.0f / 60
@@ -376,25 +380,41 @@ class ClockView : View {
         val secondRate = 360 * second * 1.0f / 60
 
         //画小时指针
-        val marginHour = radius - longScaleLength - hourMargin
-        val hourRectF = RectF(-hourLength, -marginHour, hourLength, 0f)
+        val marginHour = radius - longScaleLength - hourMargin - arrowLength
+        val hourRectF = RectF(- hourLength, - marginHour, hourLength, 0f)
         canvas.save()
-        canvas.rotate(hourRate)
-        canvas.drawRoundRect(hourRectF, 12f, 12f, hourPaint)
+        canvas.rotate(0f)
+        canvas.drawRoundRect(hourRectF, 2f, 2f, hourPaint)
+        //画箭头
+        val hourPath = Path()
+        hourPath.moveTo(0f, - (marginHour + arrowLength))
+        hourPath.lineTo(0f - hourLength,  - marginHour)
+        hourPath.lineTo(0f + hourLength, -marginHour)
+        canvas.drawPath(hourPath, hourPaint)
         canvas.restore()
         //画分针
-        val marginMinute = radius - longScaleLength - minuteMargin
-        val minuteRectF = RectF(-minuteLength, -marginMinute, minuteLength, 0f)
+        val marginMinute = radius - longScaleLength - minuteMargin - arrowLength
+        val minuteRectF = RectF(- minuteLength, - marginMinute, minuteLength, 0f)
         canvas.save()
         canvas.rotate(minuteRate)
-        canvas.drawRoundRect(minuteRectF, 12f, 12f, minutePaint)
+        canvas.drawRoundRect(minuteRectF, 2f, 2f, minutePaint)
+        val minutePath = Path()
+        minutePath.moveTo(0f, - (marginMinute + arrowLength))
+        minutePath.lineTo(0f - minuteLength,  - marginMinute)
+        minutePath.lineTo(0f + minuteLength, -marginMinute)
+        canvas.drawPath(minutePath, minutePaint)
         canvas.restore()
         //画秒针
-        val marginSecond = radius - shortScaleLength - secondMargin
-        val secondRectF = RectF(-secondLength, -marginSecond, secondLength, 0f)
         canvas.save()
+        val marginSecond = radius - shortScaleLength - secondMargin - arrowLength
+        val secondRectF = RectF(- secondLength, - marginSecond, secondLength, 0f)
         canvas.rotate(secondRate)
-        canvas.drawRoundRect(secondRectF, 50f, 50f, secondPaint)
+        canvas.drawRoundRect(secondRectF, 2f, 2f, secondPaint)
+        val secondPath = Path()
+        secondPath.moveTo(0f, - (marginSecond + arrowLength))
+        secondPath.lineTo(0f - secondLength,  - marginSecond)
+        secondPath.lineTo(0f + secondLength, -marginSecond)
+        canvas.drawPath(secondPath, secondPaint)
         canvas.restore()
     }
 }

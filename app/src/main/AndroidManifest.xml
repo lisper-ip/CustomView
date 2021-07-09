@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CustomView">
-        <activity android:name=".MainActivity">
+        <activity android:name=".days.ComposeViewActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -20,7 +20,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".days.ComposeViewActivity"/>
+        <activity android:name=".days.TestActivity"/>
+        <activity android:name=".MainActivity"/>
     </application>
 
 </manifest>
