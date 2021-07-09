@@ -27,6 +27,7 @@
                 android:textStyle="bold"/>
 
             <app.lonzh.customview.compose.RatingBar
+                android:layout_marginTop="@dimen/dp_10"
                 app:ratingBar_max_progress="100"
                 app:ratingBar_progress="69"
                 app:ratingBar_des_color="@color/purple_500"
