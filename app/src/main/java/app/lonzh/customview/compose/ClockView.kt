@@ -3,7 +3,6 @@ package app.lonzh.customview.compose
 import android.content.Context
 import android.graphics.*
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import app.lonzh.customview.R
@@ -186,10 +185,10 @@ class ClockView : View {
         textMargin = resources.getDimension(R.dimen.dp_4)
 
         hourLength = resources.getDimension(R.dimen.dp_4)
-        hourMargin = resources.getDimension(R.dimen.dp_40)
+        hourMargin = resources.getDimension(R.dimen.dp_30)
 
         minuteLength = resources.getDimension(R.dimen.dp_3)
-        minuteMargin = resources.getDimension(R.dimen.dp_20)
+        minuteMargin = resources.getDimension(R.dimen.dp_14)
 
         secondLength = resources.getDimension(R.dimen.dp_2)
         secondMargin = resources.getDimension(R.dimen.dp_1)

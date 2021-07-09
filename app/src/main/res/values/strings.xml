@@ -5,4 +5,6 @@
     <string name="edt_password">密码切换编辑框(组合)</string>
     <string name="input_password">请输入密码</string>
     <string name="clock_view">钟表(自定义view)</string>
+    <string name="start_view">多边型控件</string>
+    <string name="rating_bar">自定义评分控件</string>
 </resources>

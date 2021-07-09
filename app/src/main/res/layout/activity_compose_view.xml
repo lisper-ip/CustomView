@@ -12,25 +12,77 @@
         android:layout_height="match_parent"
         android:fillViewport="true">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:padding="@dimen/dp_10"
+            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
             <TextView
-                android:id="@+id/tv_clear_edt"
+                android:layout_marginTop="@dimen/dp_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_8"
+                android:text="@string/rating_bar"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <app.lonzh.customview.compose.RatingBar
+                app:ratingBar_max_progress="100"
+                app:ratingBar_progress="69"
+                app:ratingBar_des_color="@color/purple_500"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_star"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_view"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <app.lonzh.customview.compose.StarView
+                android:id="@+id/star_view"
+                android:layout_marginTop="@dimen/dp_10"
+                android:background="@color/black15"
+                app:star_line_color="@color/purple_500"
+                app:star_flag="STROKE"
+                app:star_number="20"
+                app:star_fill_percent="0.5"
+                app:star_stroke_width="@dimen/dp_2"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="@dimen/dp_100"/>
+
+            <TextView
+                android:id="@+id/tv_clock"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/clock_view"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <app.lonzh.customview.compose.ClockView
+                android:id="@+id/clock_view"
+                android:layout_marginTop="@dimen/dp_10"
+                app:clock_num_size="@dimen/text_12sp"
+                app:clock_date_text_size="@dimen/text_10sp"
+                app:clock_color="@color/black75"
+                app:clock_second_color="@android:color/holo_red_light"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_8"
                 android:text="@string/edit_clear"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textStyle="bold" />
 
             <app.lonzh.customview.compose.EditClearView
-                android:layout_margin="@dimen/dp_10"
-                android:id="@+id/edit_clear_view"
-                app:layout_constraintTop_toBottomOf="@id/tv_clear_edt"
+                android:layout_marginTop="@dimen/dp_10"
                 android:background="@drawable/shape_edt_bg"
                 app:edt_clear_hint="@string/input_account"
                 app:edt_clear_hint_color="@color/black10"
@@ -44,52 +96,27 @@
                 tools:ignore="RtlSymmetry" />
 
             <TextView
-                app:layout_constraintLeft_toLeftOf="@id/tv_clear_edt"
                 android:id="@+id/tv_password"
                 android:layout_marginTop="@dimen/dp_10"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/edt_password"
                 android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/edit_clear_view" />
+                android:textStyle="bold" />
 
             <app.lonzh.customview.compose.EditPasswordView
                 android:id="@+id/edt_password_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
                 android:background="@drawable/shape_edt_bg"
                 app:edt_password_hint="@string/input_password"
                 app:edt_password_hint_color="@color/black10"
                 app:edt_password_text_color="@color/black"
                 app:img_password_width="@dimen/dp_40"
                 app:img_password_height="@dimen/dp_40"
-                app:img_password_icon="@drawable/selector_login_eye"
-                app:layout_constraintTop_toBottomOf="@id/tv_password" />
-
-            <TextView
-                app:layout_constraintLeft_toLeftOf="@id/tv_clear_edt"
-                android:id="@+id/tv_clock"
-                android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/clock_view"
-                android:textColor="@color/black"
-                android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/edt_password_view" />
-
-            <app.lonzh.customview.compose.ClockView
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginTop="@dimen/dp_10"
-                app:layout_constraintTop_toBottomOf="@id/tv_clock"
-                app:clock_num_size="@dimen/text_12sp"
-                app:clock_date_text_size="@dimen/text_10sp"
-                app:clock_color="@color/black75"
-                app:clock_second_color="@android:color/holo_red_light"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                app:img_password_icon="@drawable/selector_login_eye"/>
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
 </layout>

@@ -209,7 +209,7 @@ class TestView : View {
 //        val rectFArc = RectF(0f, 0f, (width/2).toFloat(), (height/ 2).toFloat())
 //        //添加圆弧
 //        path.addArc(rectFArc, 0f, 90f)
-        val ovalRectF = RectF((width/2).toFloat(), (height/8).toFloat(), width.toFloat(), (height * 3/ 8).toFloat())
+//        val ovalRectF = RectF((width/2).toFloat(), (height/8).toFloat(), width.toFloat(), (height * 3/ 8).toFloat())
 //        //添加椭圆
 //        path.addOval(ovalRectF, Path.Direction.CCW)
 //        //添加circle
@@ -218,18 +218,17 @@ class TestView : View {
 //        val rectF = RectF((width/2).toFloat(), (height/2).toFloat(), (width * 3 /4).toFloat(), (height  / 2 + 20).toFloat())
 //        path.addRect(rectF, Path.Direction.CCW)
 //        path.addRoundRect(rectF, 20f, 20f, Path.Direction.CCW)
-        path.moveTo(0f, 0f)
-        path.lineTo((width/2).toFloat(), (height/4).toFloat())
-        path.arcTo(ovalRectF, 180f, 90f)
-        path.moveTo(0f, (height * 3/ 4).toFloat())
-        //二阶贝塞尔曲线  抛物线
-        //path.quadTo((width/4).toFloat(), 0f, (width/2).toFloat(), (height * 3 /4).toFloat())
-        //三阶贝塞尔曲线
-        path.cubicTo((width/4).toFloat(), 0f, (width * 3/4).toFloat(), 0f,
-            width.toFloat(),
-            (height * 3 / 4).toFloat()
-        )
-
+//        path.moveTo(0f, 0f)
+//        path.lineTo((width/2).toFloat(), (height/4).toFloat())
+//        path.arcTo(ovalRectF, 180f, 90f)
+//        path.moveTo(0f, (height * 3/ 4).toFloat())
+//        //二阶贝塞尔曲线  抛物线
+//        //path.quadTo((width/4).toFloat(), 0f, (width/2).toFloat(), (height * 3 /4).toFloat())
+//        //三阶贝塞尔曲线
+//        path.cubicTo((width/4).toFloat(), 0f, (width * 3/4).toFloat(), 0f,
+//            width.toFloat(),
+//            (height * 3 / 4).toFloat()
+//        )
         canvas.drawPath(path, strokePaint)
         canvas.restore()
     }

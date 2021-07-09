@@ -41,4 +41,30 @@
         <!--秒针的颜色-->
         <attr name="clock_second_color" format="color"/>
     </declare-styleable>
+
+    <declare-styleable name="StarView">
+        <!--填充颜色(填充模式)-->
+        <attr name="star_select_color" format="color"/>
+        <!--线条颜色-->
+        <attr name="star_line_color" format="color"/>
+        <!--线条宽度(边框模式)-->
+        <attr name="star_stroke_width" format="dimension"/>
+        <!--几边形-->
+        <attr name="star_number" format="integer"/>
+        <!--填充还是边框-->
+        <attr name="star_flag" format="enum">
+            <enum name="FILL" value="0"/>
+            <enum name="STROKE" value="1"/>
+        </attr>
+        <!--填充百分比(从左到右)(填充模式)-->
+        <attr name="star_fill_percent" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="RatingBar">
+        <attr name="ratingBar_star_number" format="integer"/>
+        <attr name="ratingBar_src_color" format="color"/>
+        <attr name="ratingBar_des_color" format="color"/>
+        <attr name="ratingBar_progress" format="integer"/>
+        <attr name="ratingBar_max_progress" format="integer"/>
+    </declare-styleable>
 </resources>
