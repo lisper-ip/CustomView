@@ -7,4 +7,5 @@
     <string name="clock_view">钟表(自定义view)</string>
     <string name="start_view">多边型控件</string>
     <string name="rating_bar">自定义评分控件</string>
+    <string name="you_are_best">你是最棒的!</string>
 </resources>

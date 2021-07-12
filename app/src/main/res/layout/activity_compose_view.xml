@@ -27,9 +27,10 @@
                 android:textStyle="bold"/>
 
             <app.lonzh.customview.compose.RatingBar
+                android:background="@color/black10"
                 android:layout_marginTop="@dimen/dp_10"
-                app:ratingBar_max_progress="100"
-                app:ratingBar_progress="69"
+                app:ratingBar_max_progress="10"
+                app:ratingBar_progress="6"
                 app:ratingBar_des_color="@color/purple_500"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -49,11 +50,11 @@
                 android:background="@color/black15"
                 app:star_line_color="@color/purple_500"
                 app:star_flag="STROKE"
-                app:star_number="20"
+                app:star_number="8"
                 app:star_fill_percent="0.5"
                 app:star_stroke_width="@dimen/dp_2"
                 android:layout_width="@dimen/dp_100"
-                android:layout_height="@dimen/dp_100"/>
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:id="@+id/tv_clock"
@@ -65,13 +66,14 @@
                 android:textStyle="bold" />
 
             <app.lonzh.customview.compose.ClockView
+                android:background="@color/black10"
                 android:id="@+id/clock_view"
+                app:clock_hour_color="@android:color/holo_green_dark"
+                app:clock_date_text_size="@dimen/text_12sp"
+                app:clock_minute_color="@android:color/holo_blue_dark"
+                app:clock_second_color="@android:color/holo_red_dark"
                 android:layout_marginTop="@dimen/dp_10"
-                app:clock_num_size="@dimen/text_12sp"
-                app:clock_date_text_size="@dimen/text_10sp"
-                app:clock_color="@color/black75"
-                app:clock_second_color="@android:color/holo_red_light"
-                android:layout_width="wrap_content"
+                android:layout_width="@dimen/dp_200"
                 android:layout_height="wrap_content"/>
 
             <TextView

@@ -22,7 +22,7 @@ import kotlin.math.sin
  * @Version:        1.0
  */
 class RatingBar : View {
-    companion object{
+    companion object {
         //五角星
         const val NUMBER = 5
     }
@@ -169,7 +169,7 @@ class RatingBar : View {
     override fun onDraw(canvas: Canvas) {
         canvas.save()
 
-        val coverSize = width * ratingBarProgress * 1.0f/ ratingBarMaxProgress
+        val coverSize = (height * starNumber + starMargin * (starNumber - 1)) * ratingBarProgress * 1.0f / ratingBarMaxProgress
         val srcBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888)
         val srcCanvas = Canvas(srcBitmap)
         drawStar(srcCanvas, srcPaint)
@@ -178,7 +178,7 @@ class RatingBar : View {
         val desCanvas = Canvas(desBitmap)
         desCanvas.save()
         //先裁剪 在画
-        desCanvas.clipRect(0f,0f, coverSize, height.toFloat())
+        desCanvas.clipRect(0f, 0f, coverSize, height.toFloat())
         drawStar(desCanvas, desPaint)
         desCanvas.restore()
         desCanvas.drawBitmap(srcBitmap, 0f, 0f, srcPaint)
@@ -187,7 +187,7 @@ class RatingBar : View {
         canvas.restore()
     }
 
-    private fun drawStar(canvas: Canvas, paint: Paint){
+    private fun drawStar(canvas: Canvas, paint: Paint) {
         for (index in 0 until starNumber) {
             canvas.save()
             canvas.translate(
@@ -207,16 +207,16 @@ class RatingBar : View {
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
-        val height = if (heightMode == MeasureSpec.EXACTLY) {
-            heightSize
-        } else {
-            minViewHeight
+        if (widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST) {
+            setMeasuredDimension(
+                (minViewHeight * starNumber + starMargin * (starNumber - 1)).toInt(),
+                minViewHeight
+            )
+        } else if(widthMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension((heightSize * starNumber + starMargin * (starNumber - 1)).toInt(),
+                heightSize)
+        } else if(heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(widthSize, minViewHeight)
         }
-        val width = if (widthMode == MeasureSpec.EXACTLY) {
-            widthSize
-        } else {
-            (height * starNumber + starMargin * (starNumber - 1)).toInt()
-        }
-        setMeasuredDimension(width, height)
     }
 }

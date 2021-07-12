@@ -25,6 +25,9 @@ class ClockView : View {
     private var screenWidth: Int = 0
     private var screenHeight: Int = 0
 
+    //最小高度
+    private var minViewHeight: Int = 0
+
     //长刻度的长度
     private var longScaleLength: Float = 0f
 
@@ -145,7 +148,7 @@ class ClockView : View {
 
         dataTextSize = typedArray.getDimension(
             R.styleable.ClockView_clock_date_text_size,
-            resources.getDimension(R.dimen.text_10sp)
+            resources.getDimension(R.dimen.text_6sp)
         )
 
         numTextSize = typedArray.getDimension(
@@ -194,6 +197,8 @@ class ClockView : View {
         secondMargin = resources.getDimension(R.dimen.dp_1)
 
         arrowLength = resources.getDimension(R.dimen.dp_10)
+
+        minViewHeight = screenWidth / 3
 
         initPaint(context)
     }
@@ -271,17 +276,13 @@ class ClockView : View {
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
-        val width = if (widthMode == MeasureSpec.EXACTLY) {
-            widthSize
-        } else {
-            screenWidth
+        if(widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(minViewHeight, minViewHeight)
+        } else if(widthMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(heightSize, heightSize)
+        } else if(heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(widthSize, widthSize)
         }
-        val height = if (heightMode == MeasureSpec.EXACTLY) {
-            heightSize
-        } else {
-            screenHeight / 4
-        }
-        setMeasuredDimension(width.coerceAtMost(height), width.coerceAtMost(height))
     }
 
     override fun onDraw(canvas: Canvas) {

@@ -195,7 +195,7 @@ class TestView : View {
 
         canvas.save()
         //完全绘制
-//        canvas.drawBitmap(bitmap, 0f, 0f, fillPaint)
+        //canvas.drawBitmap(bitmap, 0f, 0f, fillPaint)
 //        val srcRect = Rect(0, 0, bitmap.width, (bitmap.height * 0.5).toInt())
 //        val desRect = Rect(width / 2, height / 2, width / 2 + bitmap.width,
 //            (height/ 2 + bitmap.height * 0.5).toInt()
@@ -230,6 +230,17 @@ class TestView : View {
 //            (height * 3 / 4).toFloat()
 //        )
         canvas.drawPath(path, strokePaint)
+        canvas.restore()
+
+        canvas.save()
+
+        val bitmapIcon = Bitmap.createBitmap(bitmap.width, bitmap.height,
+            Bitmap.Config.ARGB_8888)
+        val bitmapCanvas = Canvas(bitmapIcon)
+        bitmapCanvas.clipRect(0, 0, bitmap.width /2, bitmap.height)
+        bitmapCanvas.drawBitmap(bitmap, 0f, 0f, fillPaint)
+        canvas.drawBitmap(bitmapIcon, 0f, 0f, null)
+
         canvas.restore()
     }
 }

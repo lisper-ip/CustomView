@@ -122,7 +122,7 @@ class StarView : View {
                 strokeWidth = lineWidth
             }
         }
-        minViewHeight = resources.getDimension(R.dimen.dp_30).toInt()
+        minViewHeight = resources.getDimension(R.dimen.dp_50).toInt()
 
         typedArray.recycle()
     }
@@ -134,17 +134,13 @@ class StarView : View {
         val heightMode = MeasureSpec.getMode(heightMeasureSpec)
         val heightSize = MeasureSpec.getSize(heightMeasureSpec)
 
-        val height = if (heightMode == MeasureSpec.EXACTLY) {
-            heightSize
-        } else {
-            minViewHeight
+        if(widthMode == MeasureSpec.AT_MOST && heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(minViewHeight, minViewHeight)
+        } else if(widthMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(minViewHeight, heightSize)
+        } else if(heightMode == MeasureSpec.AT_MOST){
+            setMeasuredDimension(widthSize, minViewHeight)
         }
-        val width = if (widthMode == MeasureSpec.EXACTLY) {
-            widthSize
-        } else {
-            minViewHeight.coerceAtMost(widthSize)
-        }
-        setMeasuredDimension(width.coerceAtMost(height), width.coerceAtMost(height))
     }
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
@@ -156,7 +152,7 @@ class StarView : View {
     @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         canvas.save()
-        canvas.translate((width / 2).toFloat(), (width / 2).toFloat())
+        canvas.translate((width / 2).toFloat(), (height / 2).toFloat())
         val path = Path()
         //平均角度
         val angleRate = 360 / number
