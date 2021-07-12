@@ -383,7 +383,7 @@ class ClockView : View {
         val marginHour = radius - longScaleLength - hourMargin - arrowLength
         val hourRectF = RectF(- hourLength, - marginHour, hourLength, 0f)
         canvas.save()
-        canvas.rotate(0f)
+        canvas.rotate(hourRate)
         canvas.drawRoundRect(hourRectF, 2f, 2f, hourPaint)
         //画箭头
         val hourPath = Path()

@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <variable
+            name="vm"
+            type="app.lonzh.customview.vm.ComposeViewViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -17,6 +19,48 @@
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/memory_progress"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <app.lonzh.customview.compose.StoreProgress
+                android:background="@android:color/holo_blue_bright"
+                app:StoreProgress_max_progress="100"
+                app:StoreProgress="@{vm.circleProgress}"
+                app:StoreProgress_text_color="@color/black"
+                app:StoreProgress_text_size="@dimen/text_30sp"
+                app:StoreProgress_default_bg="@color/black10"
+                app:StoreProgress_progress_bg="@android:color/white"
+                app:StoreProgress_content="MEMORY"
+                app:StoreProgress_content_text_size="@dimen/text_12sp"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/circle_progress"
+                android:textColor="@color/black"
+                android:textStyle="bold"/>
+
+            <app.lonzh.customview.compose.CircleProgress
+                android:id="@+id/circle_progress"
+                app:CircleProgress_max_progress="100"
+                app:CircleProgress="@{vm.circleProgress}"
+                app:CircleProgress_text_color="@color/black"
+                app:CircleProgress_text_size="@dimen/text_30sp"
+                app:CircleProgress_default_bg="@android:color/holo_blue_dark"
+                app:CircleProgress_progress_bg="@android:color/holo_red_dark"
+                android:layout_marginTop="@dimen/dp_10"
+                android:layout_width="@dimen/dp_100"
+                android:layout_height="wrap_content"/>
 
             <TextView
                 android:layout_marginTop="@dimen/dp_10"

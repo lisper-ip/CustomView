@@ -186,6 +186,6 @@ class StarView : View {
 
     //角度转弧度
     private fun angelToArc(angle: Float): Double {
-        return angle * Math.PI / 180f
+        return Math.toRadians(angle.toDouble())
     }
 }

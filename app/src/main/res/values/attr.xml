@@ -73,4 +73,26 @@
         <attr name="customTextView_line_color" format="color"/>
         <attr name="customTextView_line_height" format="dimension"/>
     </declare-styleable>
+
+    <declare-styleable name="CircleProgress">
+        <attr name="CircleProgress_stroke_width" format="dimension"/>
+        <attr name="CircleProgress_default_bg" format="color"/>
+        <attr name="CircleProgress_progress_bg" format="color"/>
+        <attr name="CircleProgress_text_size" format="dimension"/>
+        <attr name="CircleProgress_text_color" format="color"/>
+        <attr name="CircleProgress_max_progress" format="integer"/>
+        <attr name="CircleProgress" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="StoreProgress">
+        <attr name="StoreProgress_stroke_width" format="dimension"/>
+        <attr name="StoreProgress_default_bg" format="color"/>
+        <attr name="StoreProgress_progress_bg" format="color"/>
+        <attr name="StoreProgress_text_size" format="dimension"/>
+        <attr name="StoreProgress_text_color" format="color"/>
+        <attr name="StoreProgress_max_progress" format="integer"/>
+        <attr name="StoreProgress" format="integer"/>
+        <attr name="StoreProgress_content" format="string"/>
+        <attr name="StoreProgress_content_text_size" format="dimension"/>
+    </declare-styleable>
 </resources>
