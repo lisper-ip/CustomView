@@ -18,7 +18,7 @@
             android:padding="@dimen/dp_10"
             android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_marginTop="@dimen/dp_10"
@@ -29,6 +29,7 @@
                 android:textStyle="bold"/>
 
             <app.lonzh.customview.compose.StoreProgress
+                android:padding="@dimen/dp_8"
                 android:background="@android:color/holo_blue_bright"
                 app:StoreProgress_max_progress="100"
                 app:StoreProgress="@{vm.circleProgress}"
@@ -39,7 +40,7 @@
                 app:StoreProgress_content="MEMORY"
                 app:StoreProgress_content_text_size="@dimen/text_12sp"
                 android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="@dimen/dp_100"
+                android:layout_width="@dimen/dp_120"
                 android:layout_height="wrap_content"/>
 
             <TextView
@@ -51,7 +52,9 @@
                 android:textStyle="bold"/>
 
             <app.lonzh.customview.compose.CircleProgress
+                android:background="@color/black10"
                 android:id="@+id/circle_progress"
+                android:padding="@dimen/dp_10"
                 app:CircleProgress_max_progress="100"
                 app:CircleProgress="@{vm.circleProgress}"
                 app:CircleProgress_text_color="@color/black"
@@ -59,7 +62,7 @@
                 app:CircleProgress_default_bg="@android:color/holo_blue_dark"
                 app:CircleProgress_progress_bg="@android:color/holo_red_dark"
                 android:layout_marginTop="@dimen/dp_10"
-                android:layout_width="@dimen/dp_100"
+                android:layout_width="@dimen/dp_120"
                 android:layout_height="wrap_content"/>
 
             <TextView

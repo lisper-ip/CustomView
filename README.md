@@ -5,5 +5,6 @@
 4.直接继承viewGroup
 
 #参考 https://zhuanlan.zhihu.com/p/21995633
+     https://blog.csdn.net/lfdfhl/article/details/51671038
 #自定义库 https://github.com/wasabeef/awesome-android-ui
 

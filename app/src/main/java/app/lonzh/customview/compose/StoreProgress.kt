@@ -168,7 +168,7 @@ class StoreProgress : View {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        radius = ((w.coerceAtMost(h) - circleStrokeWidth) / 2).toFloat()
+        radius = (w.coerceAtMost(h) - circleStrokeWidth - paddingLeft - paddingRight) / 2
     }
 
     @SuppressLint("DrawAllocation")

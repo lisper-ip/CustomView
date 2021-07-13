@@ -139,7 +139,7 @@ class CircleProgress : View {
 
     override fun onSizeChanged(w: Int, h: Int, oldw: Int, oldh: Int) {
         super.onSizeChanged(w, h, oldw, oldh)
-        radius = ((w.coerceAtMost(h) - circleStrokeWidth) / 2).toFloat()
+        radius = (w.coerceAtMost(h) - circleStrokeWidth - paddingLeft - paddingBottom) / 2
     }
 
     @SuppressLint("DrawAllocation")
